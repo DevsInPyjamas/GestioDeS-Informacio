@@ -50,7 +50,7 @@ public class UserRole {
         return perm != null && perm.isCanModify();
     }
 
-    public void AddPermission(Permission permission){
+    public void addPermission(Permission permission){
         if(!permissions.contains(permission)){
             permissions.add(permission);
         }
