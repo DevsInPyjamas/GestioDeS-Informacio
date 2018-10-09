@@ -14,6 +14,8 @@ public class User {
 
     public void modifyUserRol(User userToModifyRol, Role newUserRole) throws Exception {
         if (this.role.isAdmin()) {
+            System.out.printf("User %s has modified the role from user %s to %s\n", this.name, userToModifyRol.name,
+                    newUserRole.getRolDes());
             userToModifyRol.role = newUserRole;
         } else {
             throw new Exception("You are not allowed to do this action.");

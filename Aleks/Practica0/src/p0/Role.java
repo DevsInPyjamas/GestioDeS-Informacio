@@ -23,7 +23,7 @@ public class Role {
 
     private int getScreenPosition(String screen) {
         int i = 0;
-        while(screen.equals(permissions.get(i).getScreen()) && i < permissions.size()) {
+        while(!screen.equals(permissions.get(i).getScreen()) && i < permissions.size()) {
             i++;
         }
         return i;
