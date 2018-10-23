@@ -1,6 +1,6 @@
 import rolebased.Permission;
 import rolebased.UserRole;
-import rolebased.User;s
+import rolebased.User;
 
 public class Main {
     public static void main(String[] args) {
