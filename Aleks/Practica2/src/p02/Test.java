@@ -4,8 +4,7 @@ import com.microsoft.sqlserver.jdbc.*;
 
 public class Test {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // TODO Auto-generated method stub
         System.out.println("Esta es una Prueba de Conectividad dbConnection SQL Server");
         System.out.println("BD demo");
@@ -23,7 +22,10 @@ public class Test {
 
             Statement stmt = con.createStatement();
 
-            stmt.executeUpdate("INSERT INTO Prueba VALUES(1,'Prueba 1');");
+            String[] s = new String[2];
+            s[0] = "1";
+            s[1] = "Prueba 1";
+            stmt.executeUpdate("INSERT INTO Prueba VALUES(?, ?);", s);
 
             ResultSet res = stmt.executeQuery("SELECT * FROM Prueba;" );
 
@@ -49,5 +51,4 @@ public class Test {
         }
         System.out.println("Finished");
     }
-
 }
