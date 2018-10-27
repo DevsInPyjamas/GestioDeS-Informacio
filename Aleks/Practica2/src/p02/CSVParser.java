@@ -25,7 +25,7 @@ public class CSVParser {
 
     private List<List<String>> fileReader(Scanner sc) {
         List<List<String>> allAttributes = new ArrayList<>();
-        while(sc.hasNext()) {
+        while(sc.hasNextLine()) {
             allAttributes.add(parseLines(sc.nextLine()));
         }
         return allAttributes;
