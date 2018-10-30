@@ -23,7 +23,7 @@ public class Usuario {
     public Usuario(String n, String p) {
 	    BD bd = new BD(BD_SERVER, BD_NAME);
         List<Object[]> queryTuples = bd.Select("select * from tUsuario where nombre ='" + n + "';");
-	    if(queryTuples.size() > 1) throw new Error("There are more than 1 user with that name, could not create User...");
+	    if(queryTuples.isEmpty()) throw new Error("Oh shit...");
         String userName = (String) queryTuples.get(0)[0], password = (String) queryTuples.get(0)[1];
         Rol rol = new Rol((String) queryTuples.get(0)[2]);
         if(!p.equals(password)) throw new Error("Password does not match...");
