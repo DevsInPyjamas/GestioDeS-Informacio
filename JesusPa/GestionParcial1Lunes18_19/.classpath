@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Microsoft JDBC Driver 4.0 for SQL Server/sqljdbc_4.0/esn/sqljdbc4.jar"/>
+	<classpathentry kind="output" path="out/production/GestionParcialLunes18_19"/>
+</classpath>
