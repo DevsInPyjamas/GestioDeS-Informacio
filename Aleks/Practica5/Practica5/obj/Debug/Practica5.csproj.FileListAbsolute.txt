@@ -1,0 +1,9 @@
+C:\Users\alumno\Documents\Practica5\Practica5\bin\Debug\Practica5.exe.config
+C:\Users\alumno\Documents\Practica5\Practica5\bin\Debug\Practica5.exe
+C:\Users\alumno\Documents\Practica5\Practica5\bin\Debug\Practica5.pdb
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.csprojResolveAssemblyReference.cache
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.Form1.resources
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.Properties.Resources.resources
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.csproj.GenerateResource.Cache
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.exe
+C:\Users\alumno\Documents\Practica5\Practica5\obj\Debug\Practica5.pdb

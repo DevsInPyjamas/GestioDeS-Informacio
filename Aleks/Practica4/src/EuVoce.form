@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EuVoce">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="b8703" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+        <constraints border-constraint="Center"/>
+        <properties/>
+      </component>
+      <component id="91baf" class="javax.swing.JButton" binding="euVoceButton" default-binding="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <text value="Eu Voce"/>
+        </properties>
+      </component>
+      <vspacer id="5f25b">
+        <constraints border-constraint="North"/>
+      </vspacer>
+      <vspacer id="37ca5">
+        <constraints border-constraint="South"/>
+      </vspacer>
+    </children>
+  </grid>
+</form>

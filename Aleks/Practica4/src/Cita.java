@@ -26,12 +26,7 @@ public class Cita {
         Object[] tupla = miBD.Select("SELECT * FROM tCita where id_cita = '" + id + "';").get(0);
         this.ID = (int) tupla[0];
         this.NumSS = (int) tupla[1];
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        try {
-            this.Fecha_Hora = format.parse((String) tupla[2]);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Fecha_Hora = (Date)tupla[2];
         this.Consulta = (String) tupla[3];
      }
 
