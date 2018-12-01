@@ -1,0 +1,8 @@
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\bin\Debug\practica06.exe
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\bin\Debug\practica06.pdb
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.csprojResolveAssemblyReference.cache
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.Properties.Resources.resources
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.csproj.GenerateResource.Cache
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.exe
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.pdb
+C:\pastrana\Fundamentos Informatica Clinica\practicas\2014_2015\practica06\practica06\obj\Debug\practica06.LOGIN.resources
