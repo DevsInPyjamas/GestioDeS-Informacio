@@ -18,7 +18,7 @@ namespace HIS
             List<Pais> lista = new List<Pais>();
             SQLSERVERDB bd = new SQLSERVERDB(BD_SERVER, BD_NAME);
             foreach(object[] tuple in bd.Select("select codigo, descripcion from tPais;")) {
-                lista.Add(new Pais((string) tuple[0], (string) tuple[1]));
+                lista.Add(new Pais((string) tuple[0]));
             }
             return lista;
         }
@@ -32,7 +32,7 @@ namespace HIS
 
         public Pais(string cod, string des){
             SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            db.Insert("insert into tPais (cod, des) values ('" + cod + "', '" + des + "');");
+            db.Insert("insert into tPais (codigo, descripcion) values ('" + cod + "', '" + des + "');");
             this.cod = cod;
             this.des = des;
         }

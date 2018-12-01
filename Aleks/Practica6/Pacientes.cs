@@ -23,5 +23,12 @@ namespace HIS
         {
             this.Close();
         }
+
+        private void Pacientes_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'gI1819DataSet.tPaciente' Puede moverla o quitarla según sea necesario.
+            this.tPacienteTableAdapter.Fill(this.gI1819DataSet.tPaciente);
+            foreach (Pais p in Pais.ListaPaises()) country.Items.Add(p);
+        }
     }
 }

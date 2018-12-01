@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(USUARIOS));
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gI1819DataSet = new HIS.GI1819DataSet();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,9 +50,6 @@
             this.bDEL = new System.Windows.Forms.Button();
             this.tUsuarioTableAdapter = new HIS.GI1819DataSetTableAdapters.tUsuarioTableAdapter();
             this.bEditRol = new System.Windows.Forms.Button();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rolNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tUsuarioBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gI1819DataSet)).BeginInit();
@@ -85,6 +85,27 @@
             this.dataGridView1.Size = new System.Drawing.Size(463, 139);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rolNameDataGridViewTextBoxColumn
+            // 
+            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "rolName";
+            this.rolNameDataGridViewTextBoxColumn.HeaderText = "rolName";
+            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
+            this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tUsuarioBindingSource
             // 
@@ -230,27 +251,6 @@
             this.bEditRol.TabIndex = 13;
             this.bEditRol.Text = "Editar";
             this.bEditRol.UseVisualStyleBackColor = true;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // rolNameDataGridViewTextBoxColumn
-            // 
-            this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "rolName";
-            this.rolNameDataGridViewTextBoxColumn.HeaderText = "rolName";
-            this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
-            this.rolNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // USUARIOS
             // 
