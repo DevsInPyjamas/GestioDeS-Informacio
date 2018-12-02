@@ -111,7 +111,8 @@
             this.pacientesGridView.ReadOnly = true;
             this.pacientesGridView.RowTemplate.Height = 24;
             this.pacientesGridView.Size = new System.Drawing.Size(922, 139);
-            this.pacientesGridView.TabIndex = 2;
+            this.pacientesGridView.TabIndex = 1;
+            this.pacientesGridView.SelectionChanged += new System.EventHandler(this.pacientesGridView_SelectionChanged);
             // 
             // numSSDataGridViewTextBoxColumn
             // 
@@ -228,6 +229,7 @@
             this.bExit.Size = new System.Drawing.Size(116, 59);
             this.bExit.TabIndex = 9;
             this.bExit.UseVisualStyleBackColor = true;
+            this.bExit.Click += new System.EventHandler(this.bExit_Click);
             // 
             // label1
             // 
@@ -474,6 +476,7 @@
             this.deleteButton.TabIndex = 37;
             this.deleteButton.Text = "Borrar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // cleanButton
             // 
@@ -483,6 +486,7 @@
             this.cleanButton.TabIndex = 38;
             this.cleanButton.Text = "Limpiar";
             this.cleanButton.UseVisualStyleBackColor = true;
+            this.cleanButton.Click += new System.EventHandler(this.cleanButton_Click);
             // 
             // modifyButton
             // 
@@ -492,6 +496,7 @@
             this.modifyButton.TabIndex = 39;
             this.modifyButton.Text = "Modificar";
             this.modifyButton.UseVisualStyleBackColor = true;
+            this.modifyButton.Click += new System.EventHandler(this.modifyButton_Click);
             // 
             // dateTimePicker
             // 

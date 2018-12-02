@@ -23,6 +23,12 @@ namespace HIS
             return lista;
         }
 
+        public Pais getElDeLaDescripcion(string des) {
+            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            object[] tuple = db.Select("SELECT * FROM tPais WHERE descripcion = '" + des + "';")[0];
+            return new Pais((string) tuple[0]);
+        }
+
         public Pais(string cod) {
             SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
             object[] tuple = db.Select("SELECT * FROM tPais WHERE codigo = '" + cod + "';")[0];
