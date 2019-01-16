@@ -43,7 +43,7 @@ namespace HIS
 
         private void bCITAS_Click(object sender, EventArgs e)
         {
-
+            formulario_citas();
         }
 
         private void bExit_Click(object sender, EventArgs e)
@@ -58,12 +58,12 @@ namespace HIS
 
         private void pacientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            formulario_pacientes();
         }
 
         private void citasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            formulario_citas();
         }
 
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -117,10 +117,20 @@ namespace HIS
 
         private void formulario_pacientes()
         {
-            Pacientes ventana = new Pacientes(user);
+            PACIENTES ventana = new PACIENTES(user);
             this.Visible = false;
             ventana.ShowDialog();
             this.Visible = true;
+
+        }
+
+        private void formulario_citas()
+        {
+            CITAS ventana = new CITAS(user);
+            this.Visible = false;
+            ventana.ShowDialog();
+            this.Visible = true;
+
         }
     }
 }

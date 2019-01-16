@@ -28,6 +28,7 @@ namespace HIS
                 bINS.Enabled = false;
                 bDEL.Enabled = false;
                 bUPD.Enabled = false;
+                bEditRol.Enabled = false;
             }
 
             // TODO: esta línea de código carga datos en la tabla 'gI1819DataSet.tUsuario' Puede moverla o quitarla según sea necesario.
@@ -121,6 +122,15 @@ namespace HIS
                 tPwd.Text = seleccionado.Password;
                 lRol.SelectedItem = seleccionado.MyRol;
             }
+        }
+
+        private void bEditRol_Click(object sender, EventArgs e)
+        {
+            ROLES ventana = new ROLES();
+            this.Visible = false;
+            ventana.ShowDialog();
+            this.Visible = true;
+
         }
     }
 }

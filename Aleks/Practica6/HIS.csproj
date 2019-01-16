@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BDLibrary">
+      <HintPath>..\..\..\Proyectos Fin de Carrera\LibreriaAccesoBD\BDLibrary\BDLibrary\bin\x86\Debug\BDLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,7 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BDLibrary.cs" />
+    <Compile Include="Cita.cs" />
+    <Compile Include="CITAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CITAS.Designer.cs">
+      <DependentUpon>CITAS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs" />
     <Compile Include="FLogin.cs">
       <SubType>Form</SubType>
@@ -52,20 +61,26 @@
     <Compile Include="FLogin.Designer.cs">
       <DependentUpon>FLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pacientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pacientes.Designer.cs">
-      <DependentUpon>Pacientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="GI1819DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GI1819DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Paciente.cs" />
+    <Compile Include="PACIENTES.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PACIENTES.Designer.cs">
+      <DependentUpon>PACIENTES.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pais.cs" />
     <Compile Include="Permiso.cs" />
+    <Compile Include="PERMISOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PERMISOS.Designer.cs">
+      <DependentUpon>PERMISOS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rol.cs" />
@@ -82,11 +97,17 @@
     <Compile Include="USUARIOS.Designer.cs">
       <DependentUpon>USUARIOS.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CITAS.resx">
+      <DependentUpon>CITAS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FLogin.resx">
       <DependentUpon>FLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pacientes.resx">
-      <DependentUpon>Pacientes.cs</DependentUpon>
+    <EmbeddedResource Include="PACIENTES.resx">
+      <DependentUpon>PACIENTES.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PERMISOS.resx">
+      <DependentUpon>PERMISOS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

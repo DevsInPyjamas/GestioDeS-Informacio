@@ -25,38 +25,54 @@ namespace HIS
         private string Telefono;
         private string e_mail;
 
-        public static List<Paciente> ListaPacientes() {
+        public static List<Paciente> ListaPacientes()
+        {
             List<Paciente> lista = new List<Paciente>();
-            SQLSERVERDB bd = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            foreach (object[] tuple in bd.Select("select numSS from tPaciente;")) {
-                lista.Add(new Paciente((int) tuple[0]));
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            foreach (object[] tupla in miBD.Select("SELECT NumSS FROM tPaciente;"))
+            {
+                int id = (int)tupla[0];
+                Paciente p = new Paciente(id);
+                lista.Add(p);
             }
             return lista;
         }
 
-        public Paciente(int nSS) {
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            object[] tuple = db.Select("SELECT * FROM tPaciente WHERE numSS = '" + nSS + "';")[0];
-            NumSS = (int) tuple[0];
-            DNI_NIE = (string) tuple[1];
-            Nombre = (string) tuple[2];
-            Apellidos = (string) tuple[3];
-            Sexo = (string) tuple[4];
-            // solution adapted from https://stackoverflow.com/questions/919244/converting-a-string-to-datetime
-            FechaNacimiento = DateTime.ParseExact((string) tuple[5], "yyyy-MM-dd",
-                System.Globalization.CultureInfo.InvariantCulture);
-            Direccion = (string) tuple[6];
-            Poblacion = (string) tuple[7];
-            Provincia = (string) tuple[8];
-            CodigoPostal = (string) tuple[9];
-            miPais = new Pais((string) tuple[10]);
-            Telefono = (string) tuple[11];
-            e_mail = (string) tuple[12];
+        public Paciente(int nSS)
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            object[] tupla = miBD.Select("SELECT * FROM tPaciente WHERE NumSS=" + nSS + ";")[0];
+
+            NumSS= (int)tupla[0];
+            DNI_NIE= (string)tupla[1];
+            Nombre= (string)tupla[2];
+            Apellidos= (string)tupla[3];
+            Sexo= (string)tupla[4];
+            string[] fecha = tupla[5].ToString().Split('-');
+            FechaNacimiento = new DateTime(int.Parse(fecha[0]), 
+                int.Parse(fecha[1]), 
+                int.Parse(fecha[2]));
+            Direccion = (string)tupla[6];
+            Poblacion = (string)tupla[7];
+            Provincia = (string)tupla[8];
+            CodigoPostal = (string)tupla[9];
+            miPais = new Pais((string)tupla[10]);
+            Telefono = (string)tupla[11];
+            e_mail = (string)tupla[12];
+            
         }
 
         public Paciente(int NumSS, string DNI_NIE, string Nombre, string Apellidos, string Sexo,
             DateTime FechaNacimiento, string Direccion, string Poblacion, string Provincia,
-            string CodigoPostal, Pais miPais, string Telefono, string e_mail) {
+            string CodigoPostal, Pais miPais, string Telefono, string e_mail)
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            string ins = "INSERT INTO tPaciente VALUES(" + NumSS + ", '" + DNI_NIE + "', '"
+                + Nombre + "', '" + Apellidos + "', '" + Sexo + "', '" + FechaNacimiento.ToShortDateString()
+                + "', '" + Direccion + "', '" + Poblacion + "', '" + Provincia + "', '" + CodigoPostal
+                + "', '" + miPais.Codigo + "', '" + Telefono + "', '" + e_mail + "');";
+            miBD.Insert(ins);
+
             this.NumSS = NumSS;
             this.DNI_NIE = DNI_NIE;
             this.Nombre = Nombre;
@@ -70,137 +86,201 @@ namespace HIS
             this.miPais = miPais;
             this.Telefono = Telefono;
             this.e_mail = e_mail;
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            db.Insert("insert into tPaciente values ('" + NumSS + "', '" + DNI_NIE + "', '" + Nombre + "','"
-                      +Apellidos+"','"+Sexo+"','"+FechaNacimiento+"','"+Direccion+"','"+Poblacion+"','"+
-                      Provincia+"','"+CodigoPostal+"','"+miPais.Codigo+"','"+Telefono+"','"+e_mail);
         }
 
-        public void BorrarPaciente(){
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            
+        public void BorrarPaciente()
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            miBD.Delete("DELETE tPaciente WHERE NumSS=" + this.NumSS + ";");
+
+            NumSS = -1;
+            DNI_NIE = null;
+            Nombre = null;
+            Apellidos = null;
+            Sexo = null;
+            FechaNacimiento = DateTime.Today;
+            Direccion = null;
+            Poblacion = null;
+            Provincia = null;
+            CodigoPostal = null;
+            miPais = null;
+            Telefono = null;
+            e_mail = null;
+
         }
 
-        public int NumeroSS_Paciente {
-            get { return NumSS;}
+        public int NumeroSS_Paciente
+        {
+            get { return NumSS; }
+            // No se permite cambiar el Número de la SS de un paciente
         }
 
 
-        public string DNI_NIE_Paciente{
-            get { return DNI_NIE; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set DNI_NIE = '" + value + "' where numss = '" + NumSS + "';");
+        public string DNI_NIE_Paciente
+        {
+            get
+            {
+                return DNI_NIE;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET DNI_NIE='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 DNI_NIE = value;
             }
         }
 
-        public string Nombre_Paciente {
-            get { return Nombre; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Nombre = '" + value + "' where numss = '" + NumSS + "';");
+        public string Nombre_Paciente
+        {
+            get
+            {
+                return Nombre;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Nombre='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Nombre = value;
             }
         }
 
         public string Apellidos_Paciente
         {
-            get { return Apellidos; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Apellidos = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Apellidos;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Apellidos='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Apellidos = value;
             }
         }
 
         public string Sexo_Paciente
         {
-            get { return Sexo; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Sexo = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Sexo;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Sexo='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Sexo = value;
             }
         }
 
         public DateTime FechaNacimiento_Paciente
         {
-            get { return FechaNacimiento; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set FechaNacimiento = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return FechaNacimiento;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET FechaNacimiento='" + value.ToShortDateString() 
+                    + "' WHERE NumSS=" + this.NumSS + ";");
                 FechaNacimiento = value;
             }
         }
 
         public string Direccion_Paciente
         {
-            get { return Direccion; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Direccion = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Direccion;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Direccion='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Direccion = value;
             }
         }
 
         public string Poblacion_Paciente
         {
-            get { return Poblacion; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Poblacion = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Poblacion;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Poblacion='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Poblacion = value;
             }
         }
 
         public string Provincia_Paciente
         {
-            get { return Provincia; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Provincia = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Provincia;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Provincia='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Provincia = value;
             }
         }
 
         public string CodigoPostal_Paciente
         {
-            get {return CodigoPostal; }
+            get
+            {
+                return CodigoPostal;
+            }
             set
             {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set CodigoPostal = '" + value + "' where numss = '" + NumSS + "';");
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET CodigoPostal='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 CodigoPostal = value;
             }
         }
 
         public Pais Pais_Paciente
         {
-            get { return miPais; }
-            set{
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Pais = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return miPais;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Pais='" + value.Codigo + "' WHERE NumSS=" + this.NumSS + ";");
                 miPais = value;
             }
         }
 
         public string Telefono_Paciente
         {
-            get { return Telefono; }
-            set{
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set Telefono = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return Telefono;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET Telefono='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 Telefono = value;
             }
         }
 
         public string e_mail_Paciente
         {
-            get { return e_mail; }
-            set{
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPaciente set e_mail = '" + value + "' where numss = '" + NumSS + "';");
+            get
+            {
+                return e_mail;
+            }
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPaciente SET e_mail='" + value + "' WHERE NumSS=" + this.NumSS + ";");
                 e_mail = value;
             }
         }

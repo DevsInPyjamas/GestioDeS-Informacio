@@ -88,20 +88,25 @@
             // 
             // nombreDataGridViewTextBoxColumn
             // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
             this.nombreDataGridViewTextBoxColumn.HeaderText = "nombre";
             this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
             this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nombreDataGridViewTextBoxColumn.Width = 67;
             // 
             // passwordDataGridViewTextBoxColumn
             // 
+            this.passwordDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.passwordDataGridViewTextBoxColumn.DataPropertyName = "password";
             this.passwordDataGridViewTextBoxColumn.HeaderText = "password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Width = 77;
             // 
             // rolNameDataGridViewTextBoxColumn
             // 
+            this.rolNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rolNameDataGridViewTextBoxColumn.DataPropertyName = "rolName";
             this.rolNameDataGridViewTextBoxColumn.HeaderText = "rolName";
             this.rolNameDataGridViewTextBoxColumn.Name = "rolNameDataGridViewTextBoxColumn";
@@ -251,6 +256,7 @@
             this.bEditRol.TabIndex = 13;
             this.bEditRol.Text = "Editar";
             this.bEditRol.UseVisualStyleBackColor = true;
+            this.bEditRol.Click += new System.EventHandler(this.bEditRol_Click);
             // 
             // USUARIOS
             // 
@@ -303,9 +309,9 @@
         private GI1819DataSet gI1819DataSet;
         private System.Windows.Forms.BindingSource tUsuarioBindingSource;
         private GI1819DataSetTableAdapters.tUsuarioTableAdapter tUsuarioTableAdapter;
-        private System.Windows.Forms.Button bEditRol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rolNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button bEditRol;
     }
 }

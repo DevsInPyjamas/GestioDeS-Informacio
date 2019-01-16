@@ -14,31 +14,33 @@ namespace HIS
         private static string BD_SERVER = Properties.Settings.Default.BD_SERVER;
         private static string BD_NAME = Properties.Settings.Default.BD_NAME;
 
-        public static List<Pais> ListaPaises() {
+        public static List<Pais> ListaPaises()
+        {
             List<Pais> lista = new List<Pais>();
-            SQLSERVERDB bd = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            foreach(object[] tuple in bd.Select("select codigo, descripcion from tPais;")) {
-                lista.Add(new Pais((string) tuple[0]));
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            foreach (object[] tupla in miBD.Select("SELECT Codigo FROM tPais;"))
+            {
+                string id = (string)tupla[0];
+                Pais p = new Pais(id);
+                lista.Add(p);
             }
+
             return lista;
         }
 
-        public Pais getElDeLaDescripcion(string des) {
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            object[] tuple = db.Select("SELECT * FROM tPais WHERE descripcion = '" + des + "';")[0];
-            return new Pais((string) tuple[0]);
+        public Pais(string cod)
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            object[] tupla = miBD.Select("SELECT * FROM tPais WHERE Codigo='" + cod + "';")[0];
+
+            this.cod = (string)tupla[0];
+            this.des = (string)tupla[1];
         }
 
-        public Pais(string cod) {
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            object[] tuple = db.Select("SELECT * FROM tPais WHERE codigo = '" + cod + "';")[0];
-            this.cod = (string) tuple[0];
-            des = (string) tuple[1];
-        }
-
-        public Pais(string cod, string des){
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            db.Insert("insert into tPais (codigo, descripcion) values ('" + cod + "', '" + des + "');");
+        public Pais(string cod, string des)
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            miBD.Insert("INSERT INTO tPais VALUES('" + cod + "', '" + des + "');");
             this.cod = cod;
             this.des = des;
         }
@@ -46,9 +48,11 @@ namespace HIS
         public string Codigo
         {
             get { return cod; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("update tPais set codigo = '" + value + "' where codigo = '" + cod + "';");
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPais SET Codigo = '" + value
+                    + "' WHERE Codigo='" + this.cod + "';");
                 cod = value;
             }
         }
@@ -56,23 +60,31 @@ namespace HIS
         public string Descripcion
         {
             get { return des; }
-            set {
-                SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-                db.Update("udate tPais set descripcion = '" + value + "' where codigo = '" + cod + "';");
+            set
+            {
+                SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+                miBD.Update("UPDATE tPais SET Descripcion = '" + value
+                    + "' WHERE Codigo='" + this.cod + "';");
                 des = value;
             }
         }
 
-        public void BorrarPais(string cod) {
-            SQLSERVERDB db = new SQLSERVERDB(BD_SERVER, BD_NAME);
-            db.Delete("Delete from tPais where codigo = '" + cod + "';");
+        public void BorrarPais()
+        {
+            SQLSERVERDB miBD = new SQLSERVERDB(BD_SERVER, BD_NAME);
+            miBD.Delete("DELETE FROM tPais WHERE Codigo='" + cod + "';");
+
+            this.cod = null;
+            this.des = null;
         }
 
-        public override string ToString() {
+        public override string ToString()
+        {
             return des;
         }
 
-        public override bool Equals(object obj) {
+        public override bool Equals(object obj)
+        {
             return obj is Pais && (((Pais)obj).Codigo.CompareTo(this.Codigo) == 0);
         }
 
